@@ -145,7 +145,7 @@
         /* ── Hero Profile Image ── */
         .hero-image {
             position: absolute;
-            right: 6%;
+            right: 15%;
             top: 50%;
             transform: translateY(-50%);
 
@@ -458,14 +458,12 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 18px;
-            padding: 30px 28px;
+            overflow: hidden;
             display: flex;
-            gap: 20px;
-            align-items: flex-start;
+            flex-direction: column;
             transition: var(--transition);
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
             position: relative;
-            overflow: hidden;
         }
 
         .cert-card::after {
@@ -487,17 +485,65 @@
             width: 100%;
         }
 
+        /* Certificate image at the top of the card */
+        .cert-img-wrap {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-bottom: 3px solid var(--accent-light);
+            background: var(--dark-secondary);
+            position: relative;
+        }
+
+        .cert-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-card:hover .cert-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        /* Shown when no image is provided — acts as a placeholder */
+        .cert-img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: rgba(43, 192, 217, 0.25);
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(43,192,217,0.03),
+                rgba(43,192,217,0.03) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+
+        /* Row: badge icon + text body */
+        .cert-info-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 22px 22px 26px;
+        }
+
         .cert-badge {
-            width: 56px;
-            height: 56px;
+            width: 48px;
+            height: 48px;
             background: rgba(43, 192, 217, 0.12);
             border: 2px solid rgba(43, 192, 217, 0.35);
-            border-radius: 14px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: var(--accent-light);
         }
 
@@ -507,29 +553,29 @@
 
         .cert-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 6px;
-            line-height: 1.3;
+            margin-bottom: 5px;
+            line-height: 1.35;
         }
 
         .cert-issuer {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--accent-light);
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .cert-meta {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         .cert-date {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
@@ -537,7 +583,7 @@
         }
 
         .cert-link {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--accent-light);
             text-decoration: none;
             display: flex;
@@ -953,6 +999,24 @@
         <div class="section-content">
             <div class="projects-container">
                 <div class="projects-carousel">
+
+                    <!--
+                    ╔══════════════════════════════════════════════════════╗
+                    ║           HOW TO ADD A NEW PROJECT                   ║
+                    ╠══════════════════════════════════════════════════════╣
+                    ║  1. Copy the block between                           ║
+                    ║     "PROJECT CARD START" and "PROJECT CARD END"      ║
+                    ║  2. Paste it after the last project card's </div>    ║
+                    ║  3. Fill in 4 fields:                                ║
+                    ║     • src="..."         → project screenshot image   ║
+                    ║     • project-title     → name of the project        ║
+                    ║     • project-description → short description        ║
+                    ║     • href="..."        → GitHub / LinkedIn links     ║
+                    ║  4. Save — the card auto-appears in the carousel     ║
+                    ╚══════════════════════════════════════════════════════╝
+                    -->
+
+                    <!-- ══ PROJECT CARD START ══ -->
                     <div class="project-card animate-on-scroll">
                         <img src="1st_project.jpg" alt="Game Project" class="project-image">
                         <div class="project-content">
@@ -968,6 +1032,9 @@
                             </div>
                         </div>
                     </div>
+                    <!-- ══ PROJECT CARD END ══ -->
+
+                    <!-- ══ PROJECT CARD START ══ -->
                     <div class="project-card animate-on-scroll">
                         <img src="Portfolio.png" alt="Portfolio Project" class="project-image">
                         <div class="project-content">
@@ -983,6 +1050,23 @@
                             </div>
                         </div>
                     </div>
+                    <!-- ══ PROJECT CARD END ══ -->
+                        <div class="project-card animate-on-scroll">
+                        <img src="Ai_project.png" alt="AI Project" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Finding A Car</h3>
+                            <p class="project-description">AI-powered car condition assessment system that analyzes images, descriptions, and ratings to assign objective grades (A+–C), built using ResNet-50, XGBoost, FastAPI, and React to enable condition-based car discovery.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/orgs/MeowAWS/repositories" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7423453735286243328/" class="project-link" target="_blank">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -995,47 +1079,82 @@
         <h2 class="section-title">Certifications</h2>
         <div class="cert-grid">
 
-            <!-- ── Card 1 ── Replace with your real cert details ── -->
+            <!--
+            ╔══════════════════════════════════════════════════════╗
+            ║         HOW TO ADD A NEW CERTIFICATION               ║
+            ╠══════════════════════════════════════════════════════╣
+            ║  1. Copy the entire block between                    ║
+            ║     "CERT CARD START" and "CERT CARD END"            ║
+            ║  2. Paste it right after the last </div> in the grid ║
+            ║  3. Fill in the 5 fields:                            ║
+            ║     • src="..."  → your cert image file name         ║
+            ║     • cert-title → name of the certificate           ║
+            ║     • cert-issuer → who gave it (e.g. Coursera)      ║
+            ║     • cert-date  → month and year earned             ║
+            ║     • href="..." → link to verify / view online      ║
+            ║  4. Choose a badge icon from fontawesome.com         ║
+            ║     and replace the <i class="fas fa-..."> inside    ║
+            ║     .cert-badge                                       ║
+            ║  5. Save the file — done!                            ║
+            ╚══════════════════════════════════════════════════════╝
+
+            AVAILABLE BADGE ICONS (copy the class):
+              fas fa-certificate   fas fa-award   fas fa-medal
+              fas fa-star          fas fa-trophy  fas fa-scroll
+              fab fa-python        fab fa-aws     fab fa-google
+              fas fa-brain         fas fa-code    fas fa-database
+            -->
+
+            <!-- ══ CERT CARD START ══ -->
             <div class="cert-card animate-on-scroll">
-                <div class="cert-badge"><i class="fas fa-certificate"></i></div>
-                <div class="cert-body">
-                    <div class="cert-title">Certificate Name Here</div>
-                    <div class="cert-issuer">Issuing Organization</div>
-                    <div class="cert-meta">
-                        <span class="cert-date"><i class="far fa-calendar-alt"></i> Month YYYY</span>
-                        <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
+
+                <!-- IMAGE: replace cert1.jpg with your screenshot/photo of the certificate -->
+                <!-- If you have no image, delete the <div class="cert-img-wrap">...</div>   -->
+                <!-- and the placeholder icon will show automatically                        -->
+                <div class="cert-img-wrap">
+                    <img src="Course_1.png" alt="Certificate"
+                         onerror="this.parentElement.innerHTML='<div class=\'cert-img-placeholder\'><i class=\'fas fa-certificate\'></i></div>'">
+                </div>
+
+                <div class="cert-info-row">
+                    <div class="cert-badge"><i class="fas fa-certificate"></i></div>
+                    <div class="cert-body">
+                        <div class="cert-title">Supervised Machine Learning  Regression and Classification!</div>          <!-- ← cert name -->
+                        <div class="cert-issuer">Coursera</div>          <!-- ← e.g. Coursera -->
+                        <div class="cert-meta">
+                            <span class="cert-date">
+                                <i class="far fa-calendar-alt"></i> June 2025      <!-- ← e.g. March 2024 -->
+                            </span>
+                            <a href="https://coursera.org/share/aca90db571578c6e7165dd5b6bcf068c" class="cert-link" target="_blank">           <!-- ← paste verify URL -->
+                                <i class="fas fa-external-link-alt"></i> View
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- ══ CERT CARD END ══ -->
 
-            <!-- ── Card 2 ── -->
+            <!-- ══ CERT CARD START ══ -->
             <div class="cert-card animate-on-scroll">
-                <div class="cert-badge"><i class="fas fa-award"></i></div>
-                <div class="cert-body">
-                    <div class="cert-title">Certificate Name Here</div>
-                    <div class="cert-issuer">Issuing Organization</div>
-                    <div class="cert-meta">
-                        <span class="cert-date"><i class="far fa-calendar-alt"></i> Month YYYY</span>
-                        <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
+                <div class="cert-img-wrap">
+                    <img src="Course_2.png" alt="Certificate"
+                         onerror="this.parentElement.innerHTML='<div class=\'cert-img-placeholder\'><i class=\'fas fa-award\'></i></div>'">
+                </div>
+                <div class="cert-info-row">
+                    <div class="cert-badge"><i class="fas fa-award"></i></div>
+                    <div class="cert-body">
+                        <div class="cert-title">Advanced Learning Algorithms</div>
+                        <div class="cert-issuer">Coursera</div>
+                        <div class="cert-meta">
+                            <span class="cert-date"><i class="far fa-calendar-alt"></i> Aug 2025</span>
+                            <a href="https://coursera.org/share/8cd81a3d597a6d89a8b213710f4be504" class="cert-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- ── Card 3 ── -->
-            <div class="cert-card animate-on-scroll">
-                <div class="cert-badge"><i class="fas fa-medal"></i></div>
-                <div class="cert-body">
-                    <div class="cert-title">Certificate Name Here</div>
-                    <div class="cert-issuer">Issuing Organization</div>
-                    <div class="cert-meta">
-                        <span class="cert-date"><i class="far fa-calendar-alt"></i> Month YYYY</span>
-                        <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Add more cert cards here by copy-pasting a block above ── -->
-
+            <!-- ══ CERT CARD END ══ -->
         </div>
     </section>
 
