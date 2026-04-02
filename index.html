@@ -41,7 +41,6 @@
 
         html {
             scroll-behavior: smooth;
-            /* it set the scroll padding to 80px so when you use anchor or tag it will not hide the headings */
             scroll-padding-top: 80px;
         }
 
@@ -143,18 +142,24 @@
             animation-delay: 0.4s;
         }
 
+        /* ── Hero Profile Image ── */
         .hero-image {
             position: absolute;
-            right: 5%;
+            right: 6%;
             top: 50%;
             transform: translateY(-50%);
-            width: 40%;
-            max-width: 600px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+            /* ✏️  Adjust these two values to fit your photo */
+            width: 340px;
+            height: 420px;
+
+            object-fit: cover;          /* fills the frame, crops if needed  */
+            object-position: top center; /* keeps face in frame               */
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             z-index: 1;
             animation: float 6s ease-in-out infinite;
-            border: 2px solid rgba(43, 192, 217, 0.3);
+            border: 3px solid rgba(43, 192, 217, 0.4);
         }
 
         /* Sections */
@@ -423,8 +428,134 @@
             color: var(--dark-primary);
         }
 
+        /* ══════════════════════════════════════
+           CERTIFICATIONS SECTION
+        ══════════════════════════════════════ */
+        .certifications-section {
+            background: linear-gradient(160deg, var(--dark-secondary) 0%, var(--dark-primary) 100%);
+            padding: 100px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certifications-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 30px 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            transition: width 0.4s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(43, 192, 217, 0.35);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.35);
+        }
+
+        .cert-card:hover::after {
+            width: 100%;
+        }
+
+        .cert-badge {
+            width: 56px;
+            height: 56px;
+            background: rgba(43, 192, 217, 0.12);
+            border: 2px solid rgba(43, 192, 217, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.6rem;
+            color: var(--accent-light);
+        }
+
+        .cert-body {
+            flex: 1;
+        }
+
+        .cert-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .cert-issuer {
+            font-size: 0.95rem;
+            color: var(--accent-light);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .cert-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cert-date {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cert-link {
+            font-size: 0.88rem;
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border: 1px solid rgba(43,192,217,0.3);
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .cert-link:hover {
+            background: var(--accent-light);
+            color: var(--dark-primary);
+            border-color: var(--accent-light);
+        }
+
         /* Contact Section */
-        /* Contact Section - New Styles */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -526,10 +657,8 @@
         .contact-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+            top: 0; left: 0;
+            width: 100%; height: 5px;
             background: linear-gradient(90deg, var(--accent), var(--accent-light));
         }
 
@@ -556,7 +685,6 @@
             flex-direction: column;
             gap: 30px;
             align-items: center;
-
         }
 
         .contact-method {
@@ -605,25 +733,6 @@
             color: var(--accent-light);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .contact-info-container {
-                padding-right: 0;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .contact-form-container {
-                padding: 30px 20px;
-            }
-        }
-
         /* Footer */
         footer {
             background: var(--dark-primary);
@@ -640,29 +749,14 @@
 
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(-50%) translateX(0);
-            }
-
-            50% {
-                transform: translateY(-53%) translateX(5px);
-            }
-
-            100% {
-                transform: translateY(-50%) translateX(0);
-            }
+            0%   { transform: translateY(-50%) translateX(0); }
+            50%  { transform: translateY(-53%) translateX(5px); }
+            100% { transform: translateY(-50%) translateX(0); }
         }
 
         .animate-on-scroll {
@@ -684,78 +778,65 @@
                 padding-top: 150px;
             }
 
-            @media (max-width: 768px) {
-                nav ul {
-                    gap: 10px;
-                }
-
-                @media (max-width: 576px) {
-                    .hero-title {
-                        font-size: 2.8rem;
-                    }
-
-                    .hero-content {
-                        margin-bottom: 190px;
-                    }
-
-                    .hero-image {
-                        position: relative;
-                        right: auto;
-                        top: auto;
-                        transform: none;
-                        width: 80%;
-                        max-width: 500px;
-                        margin: 0 auto;
-                    }
-
-                    .section-title {
-                        font-size: 2.5rem;
-                    }
-                }
-
-                nav li a {
-                    padding: 8px 15px;
-                    font-size: 16px;
-                }
-
-                .hero-title {
-                    font-size: 3.5rem;
-                }
-
-                .hero-subtitle {
-                    font-size: 1.5rem;
-                }
-
-                .about-content,
-                .contact-content {
-                    padding: 30px;
-                }
-
-                .project-card {
-                    width: 300px;
-                }
-            }
-
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .section {
-                padding: 70px 5%;
-            }
-
-            .skills-container {
+            .contact-container {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
+
+            .contact-info-container {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .hero-subtitle { font-size: 1.3rem; }
+            .section { padding: 70px 5%; }
+            .skills-container { grid-template-columns: 1fr; }
+            .cert-grid { grid-template-columns: 1fr; }
 
             .contact-method {
                 flex-direction: column;
                 text-align: center;
             }
 
-            .contact-info {
-                text-align: center;
+            .contact-info { text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { gap: 10px; }
+
+            nav li a {
+                padding: 8px 15px;
+                font-size: 16px;
             }
+
+            .hero-title   { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+
+            .about-content,
+            .contact-content { padding: 30px; }
+
+            .project-card { width: 300px; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title { font-size: 2.8rem; }
+
+            .hero-content { margin-bottom: 190px; }
+
+            .hero-image {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                animation: none;
+                width: 75vw;
+                height: 300px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .section-title { font-size: 2.5rem; }
+            .contact-form-container { padding: 30px 20px; }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -769,6 +850,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -776,13 +858,11 @@
     <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-content">
-            <h1 class="hero-title">Hey, I'm <br><span style="color: var(--accent-light);">Muhammad Subhan Noor</span>
-            </h1>
-            <p class="hero-subtitle">A passionate Computer Science student with a strong interest in technology and
-                innovation.</p>
+            <h1 class="hero-title">Hey, I'm <br><span style="color: var(--accent-light);">Muhammad Subhan Noor</span></h1>
+            <p class="hero-subtitle">A passionate Computer Science student with a strong interest in technology and innovation.</p>
         </div>
-        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-            alt="Coding Background" class="hero-image">
+        <!-- ✏️  Your photo — place pic_1.jpeg in the same folder as this HTML file -->
+        <img src="pic_1.jpeg" alt="Muhammad Subhan Noor" class="hero-image">
     </section>
 
     <!-- About Section -->
@@ -806,30 +886,21 @@
 
                 <div class="education-timeline">
                     <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
+                        <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
                         <div class="timeline-content">
                             <h3 class="timeline-title">NUCES-FAST</h3>
-                            <p class="timeline-details">Bachelor of Science in Computer Science<br>Current Student (3rd
-                                Semester)</p>
+                            <p class="timeline-details">Bachelor of Science in Computer Science<br>Current Student (3rd Semester)</p>
                         </div>
                     </div>
-
                     <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-school"></i>
-                        </div>
+                        <div class="timeline-icon"><i class="fas fa-school"></i></div>
                         <div class="timeline-content">
                             <h3 class="timeline-title">Unique College</h3>
                             <p class="timeline-details">ICS (Intermediate in Computer Science)<br>91.1%</p>
                         </div>
                     </div>
-
                     <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
+                        <div class="timeline-icon"><i class="fas fa-book"></i></div>
                         <div class="timeline-content">
                             <h3 class="timeline-title">Unique High School</h3>
                             <p class="timeline-details">Matriculation<br>94.4%</p>
@@ -846,9 +917,7 @@
         <div class="section-content">
             <div class="skills-container">
                 <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fab fa-html5"></i>
-                    </div>
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
                     <h3 class="skill-title">Web Development</h3>
                     <div class="skills-list">
                         <div class="skill-badge">HTML</div>
@@ -856,11 +925,8 @@
                         <div class="skill-badge">JavaScript</div>
                     </div>
                 </div>
-
                 <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
                     <h3 class="skill-title">Programming</h3>
                     <div class="skills-list">
                         <div class="skill-badge">C++</div>
@@ -868,11 +934,8 @@
                         <div class="skill-badge">OOP</div>
                     </div>
                 </div>
-
                 <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
                     <h3 class="skill-title">Areas of Interest</h3>
                     <div class="skills-list">
                         <div class="skill-badge">Machine Learning</div>
@@ -883,6 +946,7 @@
             </div>
         </div>
     </section>
+
     <!-- Projects Section -->
     <section id="projects" class="section">
         <h2 class="section-title">Project Highlights</h2>
@@ -893,15 +957,12 @@
                         <img src="1st_project.jpg" alt="Game Project" class="project-image">
                         <div class="project-content">
                             <h3 class="project-title">Expect the Unexpected</h3>
-                            <p class="project-description">A suspenseful platform-based game developed in C++ with
-                                challenging levels and engaging gameplay mechanics.</p>
+                            <p class="project-description">A suspenseful platform-based game developed in C++ with challenging levels and engaging gameplay mechanics.</p>
                             <div class="project-links">
-                                <a href="https://github.com/SubhanNoor/1st-smester-project" class="project-link"
-                                    target="_blank">
+                                <a href="https://github.com/SubhanNoor/1st-smester-project" class="project-link" target="_blank">
                                     <i class="fab fa-github"></i> GitHub
                                 </a>
-                                <a href="https://www.linkedin.com/posts/subhan-noor-2b3127344_unpredictable-traps-deceptive-platforms-activity-7290815275136950272-z0zC"
-                                    class="project-link" target="_blank">
+                                <a href="https://www.linkedin.com/posts/subhan-noor-2b3127344_unpredictable-traps-deceptive-platforms-activity-7290815275136950272-z0zC" class="project-link" target="_blank">
                                     <i class="fab fa-linkedin"></i> LinkedIn
                                 </a>
                             </div>
@@ -911,14 +972,12 @@
                         <img src="Portfolio.png" alt="Portfolio Project" class="project-image">
                         <div class="project-content">
                             <h3 class="project-title">Portfolio Website</h3>
-                            <p class="project-description">Personal responsive portfolio built with HTML, CSS, and
-                                JavaScript showcasing my projects and skills.</p>
+                            <p class="project-description">Personal responsive portfolio built with HTML, CSS, and JavaScript showcasing my projects and skills.</p>
                             <div class="project-links">
                                 <a href="https://github.com/SubhanNoor/portfolio" class="project-link" target="_blank">
                                     <i class="fab fa-github"></i> GitHub
                                 </a>
-                                <a href="https://www.linkedin.com/in/subhan-noor-2b3127344/" class="project-link"
-                                    target="_blank">
+                                <a href="https://www.linkedin.com/in/subhan-noor-2b3127344/" class="project-link" target="_blank">
                                     <i class="fab fa-linkedin"></i> LinkedIn
                                 </a>
                             </div>
@@ -929,6 +988,57 @@
         </div>
     </section>
 
+    <!-- ══════════════════════════════════════
+         CERTIFICATIONS SECTION
+    ══════════════════════════════════════ -->
+    <section id="certifications" class="certifications-section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-grid">
+
+            <!-- ── Card 1 ── Replace with your real cert details ── -->
+            <div class="cert-card animate-on-scroll">
+                <div class="cert-badge"><i class="fas fa-certificate"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title">Certificate Name Here</div>
+                    <div class="cert-issuer">Issuing Organization</div>
+                    <div class="cert-meta">
+                        <span class="cert-date"><i class="far fa-calendar-alt"></i> Month YYYY</span>
+                        <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Card 2 ── -->
+            <div class="cert-card animate-on-scroll">
+                <div class="cert-badge"><i class="fas fa-award"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title">Certificate Name Here</div>
+                    <div class="cert-issuer">Issuing Organization</div>
+                    <div class="cert-meta">
+                        <span class="cert-date"><i class="far fa-calendar-alt"></i> Month YYYY</span>
+                        <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Card 3 ── -->
+            <div class="cert-card animate-on-scroll">
+                <div class="cert-badge"><i class="fas fa-medal"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title">Certificate Name Here</div>
+                    <div class="cert-issuer">Issuing Organization</div>
+                    <div class="cert-meta">
+                        <span class="cert-date"><i class="far fa-calendar-alt"></i> Month YYYY</span>
+                        <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Add more cert cards here by copy-pasting a block above ── -->
+
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="contact-container">
@@ -936,35 +1046,24 @@
                 <h2 class="contact-title">Get In Touch</h2>
                 <div class="contact-methods">
                     <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-info">
                             <div class="contact-type">Email</div>
-                            <a href="mailto:msubhannoor24.07@gmail.com"
-                                class="contact-value">msubhannoor24.07@gmail.com</a>
+                            <a href="mailto:msubhannoor24.07@gmail.com" class="contact-value">msubhannoor24.07@gmail.com</a>
                         </div>
                     </div>
-
                     <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                         <div class="contact-info">
                             <div class="contact-type">LinkedIn</div>
-                            <a href="https://www.linkedin.com/in/subhan-noor-2b3127344/" target="_blank"
-                                class="contact-value">linkedin.com/in/subhan-noor</a>
+                            <a href="https://www.linkedin.com/in/subhan-noor-2b3127344/" target="_blank" class="contact-value">linkedin.com/in/subhan-noor</a>
                         </div>
                     </div>
-
                     <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
                         <div class="contact-info">
                             <div class="contact-type">GitHub</div>
-                            <a href="https://github.com/SubhanNoor" target="_blank"
-                                class="contact-value">github.com/SubhanNoor</a>
+                            <a href="https://github.com/SubhanNoor" target="_blank" class="contact-value">github.com/SubhanNoor</a>
                         </div>
                     </div>
                 </div>
@@ -986,12 +1085,10 @@
                         <label for="email" class="form-label">Your Email</label>
                         <input type="email" id="email" name="email" class="form-input" required>
                     </div>
-
                     <div class="form-group">
                         <label for="message" class="form-label">Your Message</label>
                         <textarea id="message" name="message" class="form-textarea" required></textarea>
                     </div>
-
                     <button type="submit" class="submit-btn">
                         Send Message <i class="fas fa-paper-plane"></i>
                     </button>
@@ -1014,52 +1111,32 @@
                 .then(() => alert('Message sent successfully!'))
                 .catch(() => alert('Failed to send message'));
         });
-        // Scroll animation observer
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, {
-            threshold: 0.1
-        });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.animate-on-scroll').forEach(element => {
-            observer.observe(element);
-        });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-        // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
-                // Update active class
                 document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
             });
         });
 
-        // Update active nav link on scroll
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-
+            const sections  = document.querySelectorAll('section');
+            const navLinks  = document.querySelectorAll('nav a');
             let currentSection = '';
 
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-
-                if (pageYOffset >= sectionTop - 100) {
+                if (pageYOffset >= section.offsetTop - 100) {
                     currentSection = section.getAttribute('id');
                 }
             });
